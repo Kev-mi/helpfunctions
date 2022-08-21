@@ -54,16 +54,6 @@ def arithmetic_series_2_generator(arithmetic_series_list, coefficient, solution_
     return arithmetic_series_list_2, solution_coefficients
 
 
-def arithmetic_series_recursion_3(arithmetic_series_list):
-    iterations = 0
-    for x in range(0, len(arithmetic_series_list) - 1):
-        arithmetic_series_list, recursion = arithmetic_series_recursion_2(arithmetic_series_list)
-        if not recursion:
-            break
-        iterations += 1
-    return iterations, arithmetic_series_list[0]
-
-
 def arithmetic_series_recursion(arithmetic_series_list):
     iterations = 0
     for x in range(0, len(arithmetic_series_list) - 1):
@@ -89,7 +79,7 @@ def arithmetic_series_solver(arithmetic_series_list):
     iterations, coefficient = arithmetic_series_recursion(arithmetic_series_list)
     arithmetic_series_list, solution_coefficients = arithmetic_series_2_generator(arithmetic_series_list[0:iterations+1], coefficient/np.math.factorial(iterations), solution_coefficients)
     for x in range(0, iterations):
-        iterations, coefficient = arithmetic_series_recursion_3(arithmetic_series_list)
+        iterations, coefficient = arithmetic_series_recursion(arithmetic_series_list)
         arithmetic_series_list, solution_coefficients = arithmetic_series_2_generator(arithmetic_series_list[0:iterations + 1], coefficient / np.math.factorial(iterations), solution_coefficients)
     return solution_coefficients
 
