@@ -2,6 +2,11 @@ import math
 import numpy as np
 
 
+def normal_distribution(mean, std, samples):
+    norm_dist = np.random.normal(mean, std, samples)
+    return normal_distribution
+
+
 def polynomial_arithmetic_series_eval(coeff_list, iterations):
     sums = []
     coeff_list.reverse()
