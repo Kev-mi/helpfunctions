@@ -1,5 +1,7 @@
 import math
 import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
 
 
 def normal_distribution(mean, std, samples):
@@ -88,12 +90,50 @@ def arithmetic_series_solver(arithmetic_series_list):
         arithmetic_series_list, solution_coefficients = arithmetic_series_2_generator(arithmetic_series_list[0:iterations + 1], coefficient / np.math.factorial(iterations), solution_coefficients)
     return solution_coefficients
 
+def standard_deviation(values):
+    summation = 0
+    mean = sum(values)/len(values)
+    for x in values:
+        summation += (x-mean)**2
+    return math.sqrt(summation/len(values))
 
 
+def z_score(value, mean, standard_deviation):
+    return (value - mean)/standard_deviation
+
+
+def mean(values):
+    return sum(values)/len(values)
+
+
+def r_value_plot(independent_variable, dependent_variable):
+    if type(independent_variable) == list:
+        independent_variable = np.array(independent_variable)
+    if type(dependent_variable) == list:
+        dependent_variable = np.array(dependent_variable)
+    independent_variable = independent_variable.reshape((-1, 1))
+    model = LinearRegression().fit(independent_variable, dependent_variable)
+    r_squared = model.score(independent_variable, dependent_variable)
+    print("r squared value is", r_squared)
+    plt.scatter(independent_variable, dependent_variable)
+    plt.show()
+
+
+print(z_score(185, 285, 50))
+print(z_score(100, 140, 20))
 #from helpfunctions.functions import *
 #examples below
 #print(polynomial_arithmetic_series_eval([3, 5, 8, 9], 10))
 # n degree polynomial requires at least n+1 number of numbers in a list
-#arithmetic_series_solver([25, 77, 187, 379])
+#print(arithmetic_series_solver([25, 69, 159, 313, 549, 885, 1339, 1929, 2673, 3589]))
 #lcm(20)
 #prime_finder(20)
+#values = [6, 8, 12, 14]
+#print(standard_deviation(values))
+#stan_dev = standard_deviation(values)
+#mean = mean(values)
+#print(mean)
+#print(z_score(3, mean, stan_dev))
+#x_val = [35.56, 43.44, 73.17, 113, 265.18]
+#y_val = [44.78, 53.98, 92.14, 135.99, 326.89]
+#r_value_plot(x_val, y_val)
