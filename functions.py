@@ -2,6 +2,12 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
+from math import comb
+
+
+def probability_distribution(prob_1, prob_2, upper_bound):
+    for x in range(0, upper_bound+1):
+        print(comb(upper_bound, x) * prob_1**x * prob_2**(upper_bound-x))        
 
 
 def normal_distribution(mean, std, samples):
