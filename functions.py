@@ -5,6 +5,22 @@ from sklearn.linear_model import LinearRegression
 from math import comb
 
 
+def variance(prob_1, prob_2, upper_bound):
+    summation = 0
+    summation_2 = 0
+    for x in range(0, upper_bound+1):
+        summation +=(x)*comb(upper_bound, x) * prob_1**x * prob_2**(upper_bound-x)
+    for x in range(0, upper_bound+1):
+        summation_2 +=(x-summation)**2*comb(upper_bound, x) * prob_1**x * prob_2**(upper_bound-x)
+    return summation_2
+        
+
+def expected_value_calc(prob_1, prob_2, upper_bound):
+    summation = 0
+    for x in range(0, upper_bound+1):
+        summation +=x*comb(upper_bound, x) * prob_1**x * prob_2**(upper_bound-x)
+
+
 def probability_distribution(prob_1, prob_2, upper_bound):
     for x in range(0, upper_bound+1):
         print(comb(upper_bound, x) * prob_1**x * prob_2**(upper_bound-x))        
