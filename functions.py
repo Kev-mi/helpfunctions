@@ -5,6 +5,14 @@ from sklearn.linear_model import LinearRegression
 from math import comb
 
 
+def binomial_distribution(n, prob, upper_bound):
+    individual_prob = []
+    for x in range(0, upper_bound+1):
+        individual_prob.append(((1-prob)**(n-x)*(comb(n,x))*(prob)**(x)))
+    print(individual_prob)
+    return sum(individual_prob)
+
+
 def variance(prob_1, prob_2, upper_bound):
     summation = 0
     summation_2 = 0
