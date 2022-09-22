@@ -4,6 +4,12 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from math import comb
 
+def poisson_distribution_summation(expected_value, upper_bound):
+    summation = 0
+    for x in range(0, upper_bound + 1):
+        summation += ((expected_value**x)*(math.e**-expected_value))/(math.factorial(x))
+    return summation
+
 
 def binomial_distribution(n, prob, upper_bound):
     individual_prob = []
