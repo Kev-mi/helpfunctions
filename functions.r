@@ -1,9 +1,12 @@
 factorial <- function(upper_bound){
+    factorial = 1
+    for (x in 1:upper_bound){
+        factorial = factorial * x
+    }
+    if (factorial == 0) {
   factorial = 1
-  for (x in 1:upper_bound){
-    factorial = factorial * x
-  }
-  return (factorial)
+} 
+    return (factorial)
 }
 
 n_choose_k <- function(n, k){
