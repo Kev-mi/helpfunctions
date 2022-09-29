@@ -4,6 +4,14 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from math import comb
 
+def standard_deviation_random_variable(size):
+    expected_value = (1+size)/2
+    standard_deviation = 0
+    for x in range(1, size + 1):
+        standard_deviation += (1/size)*(x-expected_value)**2
+    return math.sqrt(standard_deviation)
+
+
 def poisson_distribution_summation(expected_value, upper_bound):
     summation = 0
     for x in range(0, upper_bound + 1):
