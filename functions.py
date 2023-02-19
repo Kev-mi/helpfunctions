@@ -125,6 +125,16 @@ def arithmetic_series_recursion_2(series_list):
     return new_series, True
 
 
+def convert_to_polynomial(polynomial_list):
+    polynomial = str(polynomial_list[0])
+    for term in range(1, len(polynomial_list)):
+        if str(polynomial_list[term])[0] != "-":
+            polynomial += " +" + str(polynomial_list[term])[0] + "x^" + str(term)
+        else:
+            polynomial += " -" + str(polynomial_list[term])[0] + "x^" + str(term)
+    return polynomial
+
+
 def arithmetic_series_solver(arithmetic_series_list):
     solution_coefficients = []
     iterations, coefficient = arithmetic_series_recursion(arithmetic_series_list)
@@ -132,7 +142,11 @@ def arithmetic_series_solver(arithmetic_series_list):
     for x in range(0, iterations):
         iterations, coefficient = arithmetic_series_recursion(arithmetic_series_list)
         arithmetic_series_list, solution_coefficients = arithmetic_series_2_generator(arithmetic_series_list[0:iterations + 1], coefficient / np.math.factorial(iterations), solution_coefficients)
-    return solution_coefficients
+    if len(solution_coefficients) > 1:
+        polynomial = convert_to_polynomial(solution_coefficients)
+        return polynomial
+    else:
+        return solution_coefficients[0]
 
 def standard_deviation(values):
     summation = 0
